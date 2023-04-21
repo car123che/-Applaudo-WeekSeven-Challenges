@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.ConfigureApplicationServices();
-builder.Services.ConfigurePersistenceServices();
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
 var app = builder.Build();
 
