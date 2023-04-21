@@ -3,6 +3,7 @@ using MovieRental.Application;
 using MovieRental.Persistence;
 using MovieRental.Infrastructure;
 using MovieRental.Persistence.Repositories;
+using MovieRental.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
 builder.Services.ConfigureInfrastructureServices(builder.Configuration);
 
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,5 +45,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors("CorsPolicy");
 app.MapControllers();
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.Run();

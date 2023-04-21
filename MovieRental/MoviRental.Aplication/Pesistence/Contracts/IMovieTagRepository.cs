@@ -1,4 +1,5 @@
-﻿using MovieRental.Domain;
+﻿using MovieRental.Application.Models;
+using MovieRental.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace MovieRental.Application.Pesistence.Contracts
     {
         Task<MovieTag> Add(MovieTag entity);
         Task Delete(MovieTag entity);
+        Task<List<Tag>> GetMovieTags(int id);
+        Task<List<Movie>> GetMoviesOrdered();
     }
 }

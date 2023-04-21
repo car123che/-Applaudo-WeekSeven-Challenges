@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\MovieTag\Handlers\Command\" />
-    <Folder Include="Features\MovieTag\Handlers\Queries\" />
-    <Folder Include="Features\MovieTag\Requests\Command\" />
-    <Folder Include="Features\MovieTag\Requests\Queries\" />
     <Folder Include="Features\Rent\Handlers\Command\" />
     <Folder Include="Features\Rent\Handlers\Queries\" />
     <Folder Include="Features\Rent\Requests\Command\" />
