@@ -16,4 +16,8 @@
     <ProjectReference Include="..\MovieRental.Domain\MovieRental.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pesistence\Infrastructure\" />
+  </ItemGroup>
+
 </Project>
