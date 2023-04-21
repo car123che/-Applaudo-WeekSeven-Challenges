@@ -34,6 +34,10 @@ namespace MovieRental.Application.DTOs.User.Validator
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .LessThan(100).WithMessage("{PropertyName} must be lesser than 100")
                 .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0");
+            RuleFor(p => p.Role)
+              .NotEmpty().WithMessage("{PropertyName} is required")
+              .LessThan(3).WithMessage("{PropertyName} must be lesser than 3")
+              .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0");
         }
     }
 }

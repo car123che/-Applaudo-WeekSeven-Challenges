@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MovieRental.Application.Pesistence.Contracts
 {
-    internal interface IUserRepository : IGenericRepository<User>
+    public interface IUserRepository : IGenericRepository<User>
     {
     }
 }

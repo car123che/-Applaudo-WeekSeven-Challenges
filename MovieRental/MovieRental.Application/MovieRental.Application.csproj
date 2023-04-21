@@ -21,8 +21,6 @@
     <Folder Include="Features\MovieTag\Handlers\Queries\" />
     <Folder Include="Features\MovieTag\Requests\Command\" />
     <Folder Include="Features\MovieTag\Requests\Queries\" />
-    <Folder Include="Features\Movie\Handlers\Command\" />
-    <Folder Include="Features\Movie\Handlers\Queries\" />
     <Folder Include="Features\Rent\Handlers\Command\" />
     <Folder Include="Features\Rent\Handlers\Queries\" />
     <Folder Include="Features\Rent\Requests\Command\" />
@@ -31,10 +29,6 @@
     <Folder Include="Features\Sell\Handlers\Queries\" />
     <Folder Include="Features\Sell\Requests\Command\" />
     <Folder Include="Features\Sell\Requests\Queries\" />
-    <Folder Include="Features\Tag\Handlers\Command\" />
-    <Folder Include="Features\Tag\Handlers\Queries\" />
-    <Folder Include="Features\User\Handlers\Command\" />
-    <Folder Include="Features\User\Handlers\Queries\" />
     <Folder Include="Pesistence\Infrastructure\" />
   </ItemGroup>
 
