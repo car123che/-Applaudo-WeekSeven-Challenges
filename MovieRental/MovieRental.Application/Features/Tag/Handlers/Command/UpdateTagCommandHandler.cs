@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MovieRental.Application.Exceptions;
 using MovieRental.Application.Features.Tag.Requests.Command;
 using MovieRental.Application.Pesistence.Contracts;
 using System;
@@ -24,7 +25,7 @@ namespace MovieRental.Application.Features.Tag.Handlers.Command
         {
             var tag = await _tagRepository.Get(request.TagDto.Id);
             if (tag == null)
-                throw new Exception("NOT FOUND EXCEPTION nameof(LeaveType), request.LeaveTypeDto.Id");
+                throw new NotFoundException(nameof(tag), request.TagDto.Id);
 
 
             _mapper.Map(request.TagDto, tag);

@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using MovieRental.Application.Exceptions;
 using MovieRental.Application.Features.Tag.Requests.Command;
 using MovieRental.Application.Features.User.Requests.Command;
 using MovieRental.Application.Pesistence.Contracts;
+using MovieRental.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,7 @@ namespace MovieRental.Application.Features.Tag.Handlers.Command
             var tag = await _tagRepository.Get(request.Id);
 
             if (tag == null)
-                throw new Exception("NOT FOUND nameof(tag), request.Id");
+                throw new NotFoundException(nameof(tag), request.Id);
 
             await _tagRepository.Delete(tag);
 

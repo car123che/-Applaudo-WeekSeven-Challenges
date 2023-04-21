@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MovieRental.Application.DTOs.User.Validator;
+using MovieRental.Application.Exceptions;
 using MovieRental.Application.Features.User.Requests.Command;
 using MovieRental.Application.Pesistence.Contracts;
 using System;
@@ -28,7 +29,7 @@ namespace MovieRental.Application.Features.User.Handlers.Command
             var validationResult = await validator.ValidateAsync(request.UserDto);
 
             if (validationResult.IsValid == false)
-                throw new Exception("new validation exception");
+                throw new ValidationException(validationResult, nameof(request.UserDto)); 
 
             var user = _mapper.Map<MovieRental.Domain.User>(request.UserDto); //map from the DTO to the domain type
             user = await _userRepository.Add(user);

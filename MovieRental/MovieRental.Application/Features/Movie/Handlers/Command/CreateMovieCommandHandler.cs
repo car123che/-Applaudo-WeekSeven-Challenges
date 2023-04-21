@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MovieRental.Application.DTOs.Movie.Validators;
+using MovieRental.Application.Exceptions;
 using MovieRental.Application.Features.Movie.Requests.Command;
 using MovieRental.Application.Pesistence.Contracts;
 
@@ -24,7 +25,7 @@ namespace MovieRental.Application.Features.Movie.Handlers.Command
             var validationResult = await validator.ValidateAsync(request.MovieDto);
 
             if (validationResult.IsValid == false)
-                throw new Exception("new validation exception");
+                throw new ValidationException(validationResult, nameof(request.MovieDto));
 
             var movie = _mapper.Map<MovieRental.Domain.Movie>(request.MovieDto); //map from the DTO to the domain type
             movie = await _movieRepository.Add(movie);

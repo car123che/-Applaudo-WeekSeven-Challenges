@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MovieRental.Application.Exceptions;
 using MovieRental.Application.Features.User.Requests.Command;
 using MovieRental.Application.Pesistence.Contracts;
 using System;
@@ -25,7 +26,7 @@ namespace MovieRental.Application.Features.User.Handlers.Command
         {
             var user = await _userRepository.Get(request.UserDto.Id);
             if (user == null)
-                throw new Exception("NOT FOUND EXCEPTION nameof(LeaveType), request.LeaveTypeDto.Id");
+                throw new NotFoundException(nameof(user), request.UserDto.Id);
 
 
             _mapper.Map(request.UserDto, user);

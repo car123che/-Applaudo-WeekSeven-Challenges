@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MovieRental.Application.Exceptions;
 using MovieRental.Application.Features.Movie.Requests.Command;
 using MovieRental.Application.Features.User.Requests.Command;
 using MovieRental.Application.Pesistence.Contracts;
@@ -28,7 +29,7 @@ namespace MovieRental.Application.Features.Movie.Handlers.Command
             var movie = await _movieRepository.Get(request.Id);
 
             if (movie == null)
-                throw new Exception("NOT FOUND nameof(movie), request.Id");
+                throw new NotFoundException(nameof(movie), request.Id);
 
             await _movieRepository.Delete(movie);
 
