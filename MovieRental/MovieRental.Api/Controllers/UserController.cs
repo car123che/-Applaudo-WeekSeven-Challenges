@@ -65,5 +65,14 @@ namespace MovieRental.Api.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
+
+        // PUT api/<UserController>/role
+        [HttpPut("role/{id}/{role}")]
+        public async Task<ActionResult> ChangeRole(int id, int role)
+        {
+            var command = new ChangeUserRoleCommand() { UserId = id, RoleId = role };
+            await _mediator.Send(command);
+            return NoContent();
+        }
     }
 }
