@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRental", "MovieRental\MovieRental.csproj", "{2AE80075-AB97-4214-8B65-B08792A5442A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{40290ECB-85DD-4B06-89B4-A13DABD0FCF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{09C12493-287B-4BE1-956F-F58BE05DF127}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{09C2F897-14C7-442D-BC23-CE5708AB0B80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CORE", "CORE", "{F56792A3-3CD7-43E3-B6C7-503D4661ECE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{88F207A7-205B-4B03-9883-CB8D59CEB545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRental.Domain", "MovieRental.Domain\MovieRental.Domain.csproj", "{49D6EC7A-4799-4263-BD57-F5F4AE946D13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +21,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2AE80075-AB97-4214-8B65-B08792A5442A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AE80075-AB97-4214-8B65-B08792A5442A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AE80075-AB97-4214-8B65-B08792A5442A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AE80075-AB97-4214-8B65-B08792A5442A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49D6EC7A-4799-4263-BD57-F5F4AE946D13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D6EC7A-4799-4263-BD57-F5F4AE946D13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D6EC7A-4799-4263-BD57-F5F4AE946D13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D6EC7A-4799-4263-BD57-F5F4AE946D13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{09C2F897-14C7-442D-BC23-CE5708AB0B80} = {40290ECB-85DD-4B06-89B4-A13DABD0FCF6}
+		{F56792A3-3CD7-43E3-B6C7-503D4661ECE3} = {40290ECB-85DD-4B06-89B4-A13DABD0FCF6}
+		{88F207A7-205B-4B03-9883-CB8D59CEB545} = {40290ECB-85DD-4B06-89B4-A13DABD0FCF6}
+		{49D6EC7A-4799-4263-BD57-F5F4AE946D13} = {F56792A3-3CD7-43E3-B6C7-503D4661ECE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BCE349FD-3309-4001-B705-1135D35412EC}
