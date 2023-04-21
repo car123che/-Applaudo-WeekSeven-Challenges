@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MovieRental.Domain
 {
-    public class Sell: BaseDomainEntity
+    public class MovieTag: BaseDomainEntity
     {
         public int MovieId { get; set; }
         public int TagId { get; set; }

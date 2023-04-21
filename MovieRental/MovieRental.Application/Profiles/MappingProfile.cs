@@ -31,7 +31,7 @@ namespace MovieRental.Application.Profiles
             CreateMap<User, CreateUserDto>().ReverseMap();
 
             //MovieTag
-            CreateMap<Sell, MovieTagDto>().ReverseMap();
+            CreateMap<MovieTag, MovieTagDto>().ReverseMap();
 
             //Rent
             CreateMap<Rent, RentDto>().ReverseMap();
