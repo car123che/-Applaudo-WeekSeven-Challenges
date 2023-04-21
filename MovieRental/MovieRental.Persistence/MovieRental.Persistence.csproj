@@ -12,8 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
     <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MovieRental.Application\MovieRental.Application.csproj" />
+    <ProjectReference Include="..\MovieRental.Domain\MovieRental.Domain.csproj" />
   </ItemGroup>
 
 </Project>

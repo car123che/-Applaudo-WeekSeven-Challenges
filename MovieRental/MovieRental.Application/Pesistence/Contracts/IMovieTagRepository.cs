@@ -9,7 +9,7 @@ namespace MovieRental.Application.Pesistence.Contracts
 {
     public interface IMovieTagRepository
     {
-        Task<MovieTag> Add(MovieTag entity);
-        Task Delete(MovieTag entity);
+        Task<Sell> Add(Sell entity);
+        Task Delete(Sell entity);
     }
 }
