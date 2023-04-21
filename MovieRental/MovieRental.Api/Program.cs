@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using MovieRental.Application;
 using MovieRental.Persistence;
+using MovieRental.Infrastructure;
 using MovieRental.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 

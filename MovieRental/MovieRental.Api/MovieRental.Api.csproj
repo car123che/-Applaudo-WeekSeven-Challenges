@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MovieRental.Infrastructure\MovieRental.Infrastructure.csproj" />
     <ProjectReference Include="..\MovieRental.Persistencee\MovieRental.Persistence.csproj" />
     <ProjectReference Include="..\MoviRental.Aplication\MovieRental.Application.csproj" />
   </ItemGroup>
