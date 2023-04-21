@@ -1,4 +1,5 @@
-﻿using MovieRental.Application.Pesistence.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieRental.Application.Pesistence.Contracts;
 using MovieRental.Domain;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,12 @@ namespace MovieRental.Persistence.Repositories
         public UserRepository(MovieRentalDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task ChangeUseRole(User user)
+        {
+            _dbContext.Entry(user).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

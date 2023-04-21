@@ -12,5 +12,10 @@ namespace MovieRental.Application.Exceptions
         {
             
         }
+
+        public NotFoundException(string message): base(message)
+        {
+            
+        }
     }
 }

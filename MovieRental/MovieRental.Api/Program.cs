@@ -1,7 +1,9 @@
 using Microsoft.OpenApi.Models;
 using MovieRental.Application;
 using MovieRental.Persistence;
+using MovieRental.Infrastructure;
 using MovieRental.Persistence.Repositories;
+using MovieRental.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,9 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 var app = builder.Build();
 
@@ -40,5 +45,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors("CorsPolicy");
 app.MapControllers();
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.Run();
