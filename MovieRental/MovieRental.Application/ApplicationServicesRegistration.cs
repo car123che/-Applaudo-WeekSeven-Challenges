@@ -1,11 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using MovieRental.Application.Pesistence.Contracts;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieRental.Application
 {
@@ -18,6 +14,7 @@ namespace MovieRental.Application
 
             return services;
         }
+
     }
 
 }
