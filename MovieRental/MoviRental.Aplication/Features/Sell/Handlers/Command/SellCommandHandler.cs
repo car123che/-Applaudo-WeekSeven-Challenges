@@ -4,6 +4,8 @@ using MovieRental.Application.DTOs.Sell;
 using MovieRental.Application.Exceptions;
 using MovieRental.Application.Features.Sell.Requests.Command;
 using MovieRental.Application.Features.Tag.Requests.Command;
+using MovieRental.Application.Models;
+using MovieRental.Application.Persistence.Infrastructure;
 using MovieRental.Application.Pesistence.Contracts;
 using System;
 using System.Collections.Generic;
@@ -18,12 +20,16 @@ namespace MovieRental.Application.Features.Sell.Handlers.Command
         private readonly ISellRepository _sellRepository;
         private readonly IMapper _mapper;
         private readonly IMovieRepository _movieRepository;
+        private readonly IEmailSender _emailSender;
 
-        public SellCommandHandler(ISellRepository sellRepository, IMapper mapper, IMovieRepository movieRepository)
+        public SellCommandHandler(ISellRepository sellRepository, 
+            IMapper mapper, IMovieRepository movieRepository,
+            IEmailSender emailSender)
         {
             _sellRepository = sellRepository;
             _mapper = mapper;
             _movieRepository = movieRepository;
+            _emailSender = emailSender;
         }
 
         public async Task<int> Handle(SellCommand request, CancellationToken cancellationToken)
@@ -40,6 +46,8 @@ namespace MovieRental.Application.Features.Sell.Handlers.Command
             movie.Stock = movie.Stock - 1;
             await _movieRepository.Update(movie);
 
+            await SendEmail(movie.Title, movie.SalePrice);
+
             return sell.Id;
         }
 
@@ -55,5 +63,23 @@ namespace MovieRental.Application.Features.Sell.Handlers.Command
                 throw new MovieOutOfStockException("Movie Out of Stock");
         }
 
+        public async Task SendEmail(string movie, double price)
+        {
+            var email = new Email
+            {
+                To = "car123che@gmail.com",
+                Body = $"You have receive your movie: {movie}. Price: {price}. Enjoy it!",
+                Subject = $"Movie{movie} Bought"
+            };
+
+            try
+            {
+                await _emailSender.SendEmail(email);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" --------------- ERROR AL ENVIAR CORRERO  --------------------- ");
+            }
+        }
     }
 }
