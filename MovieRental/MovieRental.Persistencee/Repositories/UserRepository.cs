@@ -23,5 +23,22 @@ namespace MovieRental.Persistence.Repositories
             _dbContext.Entry(user).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<User> UserExists(string email)
+        {
+            var users = await _dbContext.Users.ToListAsync();
+            User? user = null;
+
+            foreach (var usuario in users)
+            {
+                if(usuario.Email == email)
+                {
+                    user = usuario;
+                    break;
+                }
+            }
+
+            return user;
+        }
     }
 }

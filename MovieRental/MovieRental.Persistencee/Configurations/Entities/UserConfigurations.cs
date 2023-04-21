@@ -21,7 +21,7 @@ namespace MovieRental.Persistence.Configurations.Entities
 
 
             // ------ Index ------------
-            builder.HasIndex(h => h.Email);
+            builder.HasIndex(h => h.Email).IsUnique();
 
             // SEEDING DATA
             builder.HasData(

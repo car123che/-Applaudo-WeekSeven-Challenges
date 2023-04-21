@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieRental.Application.DTOs.Movie;
 using MovieRental.Application.DTOs.Tag;
@@ -7,6 +8,7 @@ using MovieRental.Application.Features.Movie.Requests.Queries;
 using MovieRental.Application.Features.Tag.Requests.Command;
 using MovieRental.Application.Features.Tag.Requests.Queries;
 using MovieRental.Application.Features.User.Requests.Command;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,7 +43,7 @@ namespace MovieRental.Api.Controllers
         }
 
         // POST api/<TagController>
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "admin")]
         public async Task<ActionResult> Post([FromBody] CreateTagDto tagDto)
         {
             var command = new CreateTagCommand() { TagDto = tagDto };
@@ -50,7 +52,7 @@ namespace MovieRental.Api.Controllers
         }
 
         // PUT api/<TagController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = "admin")]
         public async Task<ActionResult> Put(int id, [FromBody] TagDto tagDto)
         {
             var command = new UpdateTagCommand() { TagDto = tagDto };
@@ -59,7 +61,7 @@ namespace MovieRental.Api.Controllers
         }
 
         // DELETE api/<TagController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "admin")]
         public async Task<ActionResult> Delete(int id)
         {
             var command = new DeleteTagCommand() { Id = id };

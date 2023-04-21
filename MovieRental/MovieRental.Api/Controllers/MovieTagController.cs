@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieRental.Application.DTOs.Movie;
 using MovieRental.Application.DTOs.MovieTag;
@@ -8,6 +9,7 @@ using MovieRental.Application.Features.MovieTag.Requests.Command;
 using MovieRental.Application.Features.MovieTag.Requests.Queries;
 using MovieRental.Application.Features.Sell.Requests.Command;
 using MovieRental.Application.Models;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -40,7 +42,7 @@ namespace MovieRental.Api.Controllers
         }
 
         // POST api/<MovieTagController>
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "admin")]
         public async Task<ActionResult> Post([FromBody] MovieTagDto movieTagDto)
         {
             var command = new CreateMovieTagCommand() { MovieTagDto = movieTagDto };
@@ -50,7 +52,7 @@ namespace MovieRental.Api.Controllers
 
 
         // DELETE api/<MovieTagController>/5
-        [HttpDelete]
+        [HttpDelete, Authorize(Roles = "admin")]
         public async Task<ActionResult> Delete([FromBody] MovieTagDto movieTagDto)
         {
             var command = new DeleteMovieTagCommand() { MovieTagDto = movieTagDto };

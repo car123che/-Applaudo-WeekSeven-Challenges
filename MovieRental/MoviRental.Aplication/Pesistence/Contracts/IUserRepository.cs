@@ -10,5 +10,6 @@ namespace MovieRental.Application.Pesistence.Contracts
     public interface IUserRepository : IGenericRepository<User>
     {
         Task ChangeUseRole(User user);
+        Task<User> UserExists(string email);
     }
 }

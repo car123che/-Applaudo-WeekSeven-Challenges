@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieRental.Application.DTOs.Movie;
 using MovieRental.Application.DTOs.Rent;
@@ -7,6 +8,7 @@ using MovieRental.Application.Features.Movie.Requests.Queries;
 using MovieRental.Application.Features.Rent.Requests.Command;
 using MovieRental.Application.Features.Rent.Requests.Queries;
 using MovieRental.Application.Features.Sell.Requests.Command;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,7 +27,7 @@ namespace MovieRental.Api.Controllers
        
 
         // GET api/<RentController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize(Roles = "admin,user")]
         public async Task<ActionResult<List<MovieDto>>> Get(int id)
         {
             var movies = await _mediator.Send(new GetRentedMoviesRequest{ UserId = id});
@@ -33,7 +35,7 @@ namespace MovieRental.Api.Controllers
         }
 
         // POST api/<RentController>
-        [HttpPost]
+        [HttpPost , Authorize(Roles = "admin,user")]
         public async Task<ActionResult> Post([FromBody] RentDto rentDto)
         {
             var command = new RentCommand() { RentDto = rentDto };
@@ -43,7 +45,7 @@ namespace MovieRental.Api.Controllers
 
 
         // DELETE api/<RentController>/5
-        [HttpDelete]
+        [HttpDelete, Authorize(Roles = "admin,user")]
         public async Task<ActionResult> Delete(RentDto rentDto)
         {
             var command = new ReturnCommand() { RentDto = rentDto };

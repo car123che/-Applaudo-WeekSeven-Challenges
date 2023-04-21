@@ -4,6 +4,9 @@ using MovieRental.Persistence;
 using MovieRental.Infrastructure;
 using MovieRental.Persistence.Repositories;
 using MovieRental.Api;
+using Swashbuckle.AspNetCore.Filters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +19,36 @@ builder.Services.AddCors(o =>
         builder => builder.AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader());
+
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieRental.Api", Version = "v1" });
+    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = "Standard Authorization header using the Bearer scheme (\"bearer {token}\")",
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+
+    c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                                   .AddJwtBearer(options =>
+                                   {
+                                       options.TokenValidationParameters = new TokenValidationParameters
+                                       {
+                                           ValidateIssuerSigningKey = true,
+                                           IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration.GetSection("AppSetting:Token").Value)),
+                                           ValidateIssuer = false,
+                                           ValidateAudience = false
+                                       };
+                                   });
 
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
@@ -41,7 +67,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("CorsPolicy");
 app.MapControllers();
