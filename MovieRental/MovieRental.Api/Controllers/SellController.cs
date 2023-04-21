@@ -1,9 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MovieRental.Application.DTOs.Movie;
 using MovieRental.Application.DTOs.Sell;
 using MovieRental.Application.DTOs.Tag;
 using MovieRental.Application.Features.Sell.Requests.Command;
+using MovieRental.Application.Features.Sell.Requests.Queries;
 using MovieRental.Application.Features.Tag.Requests.Command;
 
 namespace MovieRental.Api.Controllers
@@ -24,6 +26,13 @@ namespace MovieRental.Api.Controllers
             var command = new SellCommand() { SellDto = sellDto };
             var response = await _mediator.Send(command);
             return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<MovieDto>>> Get(int id)
+        {
+            var movies = await _mediator.Send(new GetBoughMoviesRequest{ Id = id });
+            return Ok(movies);
         }
     }
 }

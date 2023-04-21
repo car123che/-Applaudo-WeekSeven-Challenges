@@ -12,11 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Sell\Handlers\Queries\" />
-    <Folder Include="Features\Sell\Requests\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MovieRental.Domainn\MovieRental.Domain.csproj" />
   </ItemGroup>
 

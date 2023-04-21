@@ -18,6 +18,27 @@ namespace MovieRental.Persistence.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<Movie>> GetBoughtMovies(int id)
+        {
+            var movies = await _dbContext.Sells.Include(q => q.Movie)
+                        .Where(q => q.UserId == id).Select(
+                               q =>
+                               new Movie
+                               {
+                                   Id = q.MovieId,
+                                   Title = q.Movie.Title,
+                                   Description = q.Movie.Description,
+                                   Poster = q.Movie.Poster,
+                                   Stock = q.Movie.Stock,
+                                   TrailerLink = q.Movie.TrailerLink,
+                                   SalePrice = q.Movie.SalePrice,
+                                   Likes = q.Movie.Likes,
+                                   Availability = q.Movie.Availability
+                               }
+                           ).ToListAsync();
+            return movies;
+        }
+
         public async  Task<bool> MovieExists(int id)
         {
             var movie =  await _dbContext.Movies.FindAsync(id);
