@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Rent\Handlers\Command\" />
-    <Folder Include="Features\Rent\Handlers\Queries\" />
-    <Folder Include="Features\Rent\Requests\Command\" />
-    <Folder Include="Features\Rent\Requests\Queries\" />
     <Folder Include="Features\Sell\Handlers\Queries\" />
     <Folder Include="Features\Sell\Requests\Queries\" />
   </ItemGroup>

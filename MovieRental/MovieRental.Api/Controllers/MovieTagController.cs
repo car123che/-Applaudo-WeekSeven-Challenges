@@ -55,7 +55,7 @@ namespace MovieRental.Api.Controllers
         {
             var command = new DeleteMovieTagCommand() { MovieTagDto = movieTagDto };
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return Ok();
         }
     }
 }

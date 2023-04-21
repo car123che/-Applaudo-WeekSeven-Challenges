@@ -11,5 +11,6 @@ namespace MovieRental.Application.Pesistence.Contracts
     {
         Task<Rent> Rent(Rent entity);
         Task Return(Rent entity);
+        Task<List<Movie>> GetRentedMovies(int userId);
     }
 }
